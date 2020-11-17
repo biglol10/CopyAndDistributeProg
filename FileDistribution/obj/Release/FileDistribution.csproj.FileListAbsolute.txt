@@ -1,0 +1,9 @@
+C:\Users\biglol\source\repos\FileDistribution\bin\Release\FileDistribution.exe.config
+C:\Users\biglol\source\repos\FileDistribution\bin\Release\FileDistribution.exe
+C:\Users\biglol\source\repos\FileDistribution\bin\Release\FileDistribution.pdb
+C:\Users\biglol\source\repos\FileDistribution\obj\Release\FileDistribution.Form1.resources
+C:\Users\biglol\source\repos\FileDistribution\obj\Release\FileDistribution.Properties.Resources.resources
+C:\Users\biglol\source\repos\FileDistribution\obj\Release\FileDistribution.csproj.GenerateResource.cache
+C:\Users\biglol\source\repos\FileDistribution\obj\Release\FileDistribution.csproj.CoreCompileInputs.cache
+C:\Users\biglol\source\repos\FileDistribution\obj\Release\FileDistribution.exe
+C:\Users\biglol\source\repos\FileDistribution\obj\Release\FileDistribution.pdb
