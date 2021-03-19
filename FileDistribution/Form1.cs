@@ -30,8 +30,8 @@ namespace FileDistribution
         {
             InitializeComponent();
 
-            //string myString = @"C:\Users\LG\Desktop\개발\LocationTXT.txt";  // for testing
-            string myString = @"C:\Users\mes_adm01\Desktop\배포프로그램실행\LocationTXT.txt";    // for production
+            //string myString = @"C:\Users\AAAA\Desktop\개발\LocationTXT.txt";  // for testing
+            string myString = @"C:\Users\AAAA\Desktop\배포프로그램실행\LocationTXT.txt";    // for production
 
             var utf8 = Encoding.UTF8;
             byte[] utfBytes = utf8.GetBytes(myString);
@@ -43,7 +43,7 @@ namespace FileDistribution
             Plant = aSplit[0].Trim();               // 서버
             sourceLocation.Text = aSplit[1].Trim(); // 파일서버 위치
             TempDirectory = aSplit[2].Trim();       // 서버의 임시 폴더
-            targetLocation.Text = aSplit[3].Trim(); // 뷰 폴더 위치 (예: D:\WEB_ROOT\ABS.MES\Views)
+            targetLocation.Text = aSplit[3].Trim(); // 뷰 폴더 위치 (예: D:\AAAA\AAAA\Views)
             dllBackup = aSplit[4].Trim();           // dll 백업 위치
 
             WebSvcSrc = aSplit[5].Trim();           // 웹서비스 dll 위치
@@ -77,8 +77,8 @@ namespace FileDistribution
             ResultLabel.Text = "";
             DeployResultList = new List<PlantDeployResult>(); // 안 해주면 에러
 
-            //string myString = @"C:\Users\LG\Desktop\개발\LocationTXT.txt";  // for testing
-            string myString = @"C:\Users\mes_adm01\Desktop\배포프로그램실행\LocationTXT.txt";    // for production
+            //string myString = @"C:\Users\AAAA\Desktop\개발\LocationTXT.txt";  // for testing
+            string myString = @"C:\Users\AAAA\Desktop\배포프로그램실행\LocationTXT.txt";    // for production
 
             var utf8 = Encoding.UTF8;
             byte[] utfBytes = utf8.GetBytes(myString);
@@ -107,7 +107,7 @@ namespace FileDistribution
                 Directory.Delete(tempfolder, true);
                 Directory.CreateDirectory(tempfolder);
 
-                CloneDirectory(commftp, tempfolder);  // 임시 폴더에 전부 복사
+                CloneDirectory(commftp, tempfolder);  // 임시 폴더에 전부 복사 [임시 폴더에 복사하는 부분은 동기, 각 서버 폴더에 복사하는 부분은 비동기]
 
                 //Deploy(plant, tempfolder, targetProj, targetdllback, targetwebsvc, targetsa);  동기로 할 시 이거 씀
 
@@ -145,7 +145,7 @@ namespace FileDistribution
             string[] subFiles = Directory.GetFiles(sourcePath);
             foreach (var subFile in subFiles)
             {
-                try
+                try   // 
                 {
                     if (System.IO.Path.GetFileName(subFile) == "ABS.MES.dll")
                     {
@@ -220,11 +220,11 @@ namespace FileDistribution
                     }
                     catch (Exception commonF)
                     {
-                        RecordResult(plant, "F", "ABS 프로젝트에 포함되지 않은 공통파일이 있습니다");
+                        RecordResult(plant, "F", "AAAA 프로젝트에 포함되지 않은 공통파일이 있습니다");
                         return;
                     }
                 }
-                else
+                else   // root 폴더의 sub폴더 안에 있는 .cshtml 파일 
                 {
                     try
                     {
@@ -276,7 +276,7 @@ namespace FileDistribution
             return attributes & ~attributesToRemove;
         }
 
-        public string CreateBackupDirectory(string dllBackup)
+        public string CreateBackupDirectory(string dllBackup)   // .dll 파일 백업
         {
             string dllBackupCreate = dllBackup + @"\\" + DateTime.Now.ToString("yyyy-MM-dd");
             string dllBackupEnd = "";
@@ -294,7 +294,7 @@ namespace FileDistribution
 
                 string lastFolder = subdirectoryEntries[subdirectoryEntries.Count - 1];
 
-                if (lastFolder.Contains("" + DateTime.Now.ToString("yyyy-MM-dd") + "-"))
+                if (lastFolder.Contains("" + DateTime.Now.ToString("yyyy-MM-dd") + "-"))  // 배포를 할 때마다 .dll 파일이 있으면 폴더 버전업
                 {
                     int folderIndex = Convert.ToInt32(lastFolder.Substring(lastFolder.IndexOf("" + DateTime.Now.ToString("yyyy-MM-dd") + "-") + 11));
                     folderIndex++;
